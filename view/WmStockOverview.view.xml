@@ -1,0 +1,85 @@
+<mvc:View class="sapUiSizeCozy" xmlns:mvc="sap.ui.core.mvc" controllerName="smud.org.wmLM01.controller.WmStockOverview" xmlns="sap.m"
+	xmlns:form="sap.ui.layout.form">
+	<Page showHeader="true" title="Stock Overview" showFooter="true" showNavButton="false">
+		<content>
+			<form:Form width="100%" editable="true" visible="true">
+				<form:title/>
+				<form:formContainers>
+					<form:FormContainer visible="true">
+						<form:formElements>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="WH/Plant/SLoc" width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<HBox alignItems="Stretch" direction="Row" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div"
+										visible="true" displayInline="false">
+										<items>
+											<Input id="inpWarehouse" liveChange="uppercaseNoSpecial" value="{/Lgnum}" valueLiveUpdate="true" type="Text" showValueHelp="false"
+												enabled="true" visible="true" width="75px" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="3"/>
+											<Input id="inpPlant" value="{/Werks}" valueLiveUpdate="true" type="Text" showValueHelp="false" editable="true" visible="true" width="75px"
+												valueHelpOnly="false" liveChange="uppercaseNoSpecial" required="false" valueStateText="Invalid entry" maxLength="4"/>
+											<Input id="inpStorageLocation" value="{/Lgort}" valueLiveUpdate="true" type="Text" showValueHelp="false" editable="true" visible="true"
+												width="75px" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="4"/>
+										</items>
+										<layoutData/>
+									</HBox>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Material" width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<HBox alignItems="Stretch" direction="Row" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div"
+										visible="true" displayInline="false">
+										<items>
+											<Input id="inpMatnr" value="{/Matnr}" description="{/Maktg}" valueLiveUpdate="true" type="Tel" showValueHelp="false" enabled="true"
+												visible="true" width="auto" valueHelpOnly="false" required="false" valueStateText="Invalid entry" liveChange="matnrLiveChange"/>
+											<Button id="btnMatnr" type="Default" icon="sap-icon://bar-code" iconFirst="true" width="50px" enabled="true" visible="true"
+												iconDensityAware="false" press="scan"/>
+										</items>
+										<layoutData/>
+									</HBox>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Unit" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<HBox alignItems="Stretch" direction="Row" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div"
+										visible="true" displayInline="false">
+										<items>
+											<Input id="inpMeins" editable="false" value="{/Meins}" valueLiveUpdate="true" type="Text" enabled="true" visible="true" width="100px"
+												valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="12" change="uppercase"/>
+											<Button text="Get Inventory" type="Emphasized" width="150px" enabled="true" visible="true" iconDensityAware="false" press="getInventory"/>
+										</items>
+										<layoutData/>
+									</HBox>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:fields>
+									<VBox id="vboxTable" alignItems="Stretch" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div"
+										displayInline="false">
+										<items></items>
+										<layoutData/>
+									</VBox>
+								</form:fields>
+							</form:FormElement>
+						</form:formElements>
+						<form:title/>
+					</form:FormContainer>
+				</form:formContainers>
+				<form:layout>
+					<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+				</form:layout>
+			</form:Form>
+		</content>
+		<footer></footer>
+		<headerContent/>
+		<subHeader/>
+		<customHeader/>
+	</Page>
+</mvc:View>

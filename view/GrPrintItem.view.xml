@@ -1,0 +1,81 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="smud.org.wmLM01.controller.GrPrintItem" xmlns="sap.m" xmlns:form="sap.ui.layout.form">
+    <Page showHeader="true" title="Print GR Label" showFooter="true" showNavButton="false">
+        <content>
+            <form:Form width="100%" editable="true" visible="true">
+                <form:title/>
+                <form:formContainers>
+                    <form:FormContainer visible="true">
+                        <form:formElements>
+                            <form:FormElement visible="true">
+                                <form:label>
+                                    <Label text="PO Number" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </form:label>
+                                <form:fields>
+                                    <Input id="inpGrPrintPoNumber" value="{/PoNumber}" type="Text" showValueHelp="false" editable="false" visible="true" width="150px" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="10"/>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement visible="true">
+                                <form:label>
+                                    <Label text="Item" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </form:label>
+                                <form:fields>
+                                    <Input id="inpGrPrintPoItem" value="{/PoItem}" type="Text" showValueHelp="false" editable="false" visible="true" width="75px" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="5"/>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement visible="true">
+                                <form:label>
+                                    <Label text="Mat Doc#" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </form:label>
+                                <form:fields>
+                                    <Input id="inpGrPrintMatDocNumber" value="{/MatDocNumber}" type="Text" showValueHelp="false" editable="false" visible="true" width="150px" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="10"/>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement visible="true">
+                                <form:label>
+                                    <Label text="Material" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </form:label>
+                                <form:fields>
+                                    <Input id="inpGrPrintMaterial" description="{/ShortText}" value="{/Material}" type="Text" showValueHelp="false" editable="false" visible="true" width="100%" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="18"/>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement visible="true">
+                                <form:label>
+                                    <Label text="GR Qty" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </form:label>
+                                <form:fields>
+                                    <Input id="inpGrPrintGrQty" value="{/GrQty}" type="Number" showValueHelp="false" editable="false" visible="true" width="100px" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="6"/>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement visible="true">
+                                <form:label>
+                                    <Label text="Print Qty" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </form:label>
+                                <form:fields>
+                                    <Input id="inpGrPrintPrintQty" value="{/PrintQty}" type="Number" showValueHelp="false" enabled="true" visible="true" width="100px" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="6"/>
+                                </form:fields>
+                            </form:FormElement>
+                            
+                        </form:formElements>
+                        <form:title/>
+                    </form:FormContainer>
+                </form:formContainers>
+                <form:layout>
+                    <form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+                </form:layout>
+            </form:Form>
+        </content>
+        <footer>
+            <OverflowToolbar width="100%" height="46px" design="Auto" enabled="true" visible="true">
+                <content>
+                    <Button text="Print" type="Emphasized" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="print"/>
+                    <ToolbarSpacer width=""/>
+                    <Button text="Prev" type="Emphasized" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="previous"/>
+                    <Button text="Next" type="Emphasized" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="next"/>
+                </content>
+            </OverflowToolbar>
+        </footer>
+        <headerContent/>
+        <subHeader/>
+        <customHeader/>
+    </Page>
+</mvc:View>
