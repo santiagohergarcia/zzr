@@ -1,0 +1,196 @@
+<mvc:View class="sapUiSizeCozy" xmlns:mvc="sap.ui.core.mvc" controllerName="smud.org.wmLM01.controller.WmInventory" xmlns="sap.m"
+	xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Page showHeader="true" title="Inventory Count" showFooter="true" showNavButton="false">
+		<content>
+			<form:Form width="100%" editable="true" visible="true">
+				<form:title/>
+				<form:formContainers>
+					<form:FormContainer visible="true">
+						<form:formElements>
+							<!--
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Warehouse" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<Input id="inpWarehouse" liveChange="uppercaseNoSpecial" value="{/items/0/Lgnum}" valueLiveUpdate="true" type="Text" showValueHelp="false"
+										enabled="true" visible="true" width="75px" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="3"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Plant" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<Input id="inpPlant" value="{/items/0/Werks}" valueLiveUpdate="true" type="Text" showValueHelp="false" editable="false" visible="true"
+										width="75px" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="4"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Stor. Location" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<Input id="inpStorageLocation" value="{/items/0/Lgort}" valueLiveUpdate="true" type="Text" showValueHelp="false" editable="false"
+										visible="true" width="75px" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="4"/>
+								</form:fields>
+							</form:FormElement>
+							-->
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Bin" width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<HBox alignItems="Stretch" direction="Row" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div"
+										visible="true" displayInline="false">
+										<items>
+											<Input id="inpLgpla" liveChange="liveChangeBinConfirm" value="{/Lgpla}" type="Text" showValueHelp="false" editable="false" visible="true"
+												width="125px" valueHelpOnly="false" required="true" valueStateText="Invalid entry" maxLength="10"/>
+											<Input id="inpLgplaConfirm" liveChange="uppercaseNoSpecial" value="{/LgplaConfirm}" type="Text" showValueHelp="false" editable="true"
+												visible="true" width="125px" valueHelpOnly="false" required="true" valueStateText="Invalid entry" maxLength="10"/>
+											<Button id="btnLgplaConfirm" type="Default" icon="sap-icon://bar-code" iconFirst="true" width="50px" enabled="true" visible="true"
+												iconDensityAware="false" press="scan"/>
+										</items>
+										<layoutData/>
+									</HBox>
+								</form:fields>
+							</form:FormElement>
+							<!--
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Work Order" width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<HBox alignItems="Stretch" direction="Row" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div"
+										visible="true" displayInline="false">
+										<items>
+											<Input id="inpWorkOrder" value="{/items/0/Aufnr}" valueLiveUpdate="true" type="Tel" showValueHelp="false" enabled="true" visible="true"
+												width="150px" valueHelpOnly="false" required="false" valueStateText="Invalid entry" liveChange="checkNumber" change="getMaterials"/>
+											<Button id="btnWorkOrder" type="Default" icon="sap-icon://bar-code" iconFirst="true" width="50px" enabled="true" visible="true"
+												iconDensityAware="false" press="scanAufnr"/>
+										</items>
+										<layoutData/>
+									</HBox>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Move Type" design="Standard" width="100%" required="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<ComboBox value="{/items/0/Bwart}" editable="true" enabled="true" visible="true" width="150px">
+										<items>
+											<core:Item text="262" enabled="true" key="262"/>
+											<core:Item text="962" enabled="true" key="962"/>
+											<core:Item text="964" enabled="true" key="964"/>
+										</items>
+									</ComboBox>
+								</form:fields>
+							</form:FormElement>
+										<form:FormElement visible="true">
+								<form:label>
+									<Label text="Recipient" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<HBox alignItems="Stretch" direction="Row" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div"
+										visible="true" displayInline="false">
+										<items>
+											<Input id="inpRecipient" value="{/items/0/Wempf}" valueLiveUpdate="true" type="Text" enabled="true" visible="true" width="150px"
+												valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="12" change="uppercase"/>
+											<Button id="btnRecipient" type="Default" icon="sap-icon://bar-code" iconFirst="true" width="50px" enabled="true" visible="true"
+												iconDensityAware="false" press="scan"/>
+										</items>
+										<layoutData/>
+									</HBox>
+								</form:fields>
+							</form:FormElement> 
+							-->
+							<!--<form:FormElement visible="true">
+								<form:label>
+									<Label text="Material" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<HBox alignItems="Stretch" direction="Row" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div"
+										visible="true" displayInline="false">
+										<items>
+											<Input id="inpMatnr" value="{/items/0/Matnr}" valueLiveUpdate="true" type="Text" enabled="true" visible="true" width="100%"
+												valueHelpOnly="true" valueHelpRequest="f4Matnr" required="true" valueStateText="Invalid entry" maxLength="18" change="uppercase"/>
+										</items>
+										<layoutData/>
+									</HBox>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Description" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<Input value="{/items/0/Maktg}" valueLiveUpdate="true" type="Text" showValueHelp="false" editable="false" visible="true" width="100%"
+										valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="40"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Return Qty" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<Input value="{/items/0/Qty}" valueLiveUpdate="true" type="Number" showValueHelp="false" editable="true" description="{/items/0/Meins}"
+										visible="true" width="150px" valueHelpOnly="false" required="false" valueStateText="Invalid entry"/>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="Short Text" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<Input value="{/items/0/ShortText}" valueLiveUpdate="true" type="Text" maxLength="40" showValueHelp="false" editable="true" visible="true"
+										width="100%" valueHelpOnly="false" required="false" valueStateText="Invalid entry"/>
+								</form:fields>
+							</form:FormElement>   -->
+							<form:FormElement visible="true">
+								<form:label>
+									<Label text="" width="100%" textAlign="Begin" textDirection="Inherit" visible="true"/>
+								</form:label>
+								<form:fields>
+									<HBox alignItems="Stretch" direction="Row" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div"
+										visible="true" displayInline="false">
+										<items>
+											<Button type="Default" text="Get Materials" iconFirst="true" width="150px" enabled="true" visible="true" iconDensityAware="false"
+												press="getMaterials"/>
+										</items>
+										<layoutData/>
+									</HBox>
+								</form:fields>
+							</form:FormElement>
+							<form:FormElement visible="true">
+								<form:fields>
+									<VBox id="vboxTable" alignItems="Stretch" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div"
+										displayInline="false">
+										<items></items>
+										<layoutData/>
+									</VBox>
+								</form:fields>
+							</form:FormElement>
+						</form:formElements>
+						<form:title/>
+					</form:FormContainer>
+				</form:formContainers>
+				<form:layout>
+					<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+				</form:layout>
+			</form:Form>
+		</content>
+		<footer>
+			<OverflowToolbar width="100%" height="46px" design="Auto" enabled="true" visible="true">
+				<content>
+					<Button text="Save" type="Emphasized" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="save"/>
+					<Button text="Clear" type="Default" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="clear"/>
+					<ToolbarSpacer width=""/>
+				</content>
+			</OverflowToolbar>
+		</footer>
+		<headerContent/>
+		<subHeader/>
+		<customHeader/>
+	</Page>
+</mvc:View>

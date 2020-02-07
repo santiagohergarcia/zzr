@@ -1,0 +1,99 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZWM_GI_PLANNED_SRV" xml:lang="en" sap:schema-version="1">
+            <EntityType Name="Header" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Lgnum"/>
+                    <PropertyRef Name="Tanum"/>
+                </Key>
+                <Property Name="Lgnum" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Warehouse No." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Tanum" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="TO Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="ItemsSet" Relationship="ZWM_GI_PLANNED_SRV.TransferOrderHeader_Items" FromRole="FromRole_TransferOrderHeader_Items" ToRole="ToRole_TransferOrderHeader_Items"/>
+                <NavigationProperty Name="ReturnSet" Relationship="ZWM_GI_PLANNED_SRV.TransferOrderHeader_Return" FromRole="FromRole_TransferOrderHeader_Return" ToRole="ToRole_TransferOrderHeader_Return"/>
+            </EntityType>
+            <EntityType Name="Items" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Tanum"/>
+                    <PropertyRef Name="Lgnum"/>
+                    <PropertyRef Name="Tapos"/>
+                </Key>
+                <Property Name="Benum" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Req. Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Tanum" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="TO Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Lgnum" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Warehouse No." sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="VsolmConfirm" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="3" sap:unicode="false" sap:label="St.un.rem.stock" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Kquit" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Confirmation" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Mblnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Material Doc." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Mjahr" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Mat. Doc. Year" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Tbnum" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="TR Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Bwart" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Movement Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Tapos" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Tr.order item" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Wempf" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Recipient" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Matnr" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Maktx" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Vlpla" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Source Stor.Bin" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Vltyp" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Source Stor.Ty." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VlplaConfirm" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Source Stor.Bin" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Nlpla" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Destination Bin" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Vsolm" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="3" sap:unicode="false" sap:label="St.un.rem.stock" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Meins" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Base Unit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+            </EntityType>
+            <EntityType Name="Return" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Type"/>
+                    <PropertyRef Name="Message"/>
+                </Key>
+                <Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Message type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Message" Type="Edm.String" Nullable="false" MaxLength="220" sap:unicode="false" sap:label="Message text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="TransferOrderHeader_Return" sap:content-version="1">
+                <End Type="ZWM_GI_PLANNED_SRV.Header" Multiplicity="1" Role="FromRole_TransferOrderHeader_Return"/>
+                <End Type="ZWM_GI_PLANNED_SRV.Return" Multiplicity="*" Role="ToRole_TransferOrderHeader_Return"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_TransferOrderHeader_Return">
+                        <PropertyRef Name="Lgnum"/>
+                        <PropertyRef Name="Tanum"/>
+                    </Principal>
+                    <Dependent Role="ToRole_TransferOrderHeader_Return">
+                        <PropertyRef Name="Message"/>
+                        <PropertyRef Name="Message"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="TransferOrderHeader_Items" sap:content-version="1">
+                <End Type="ZWM_GI_PLANNED_SRV.Header" Multiplicity="1" Role="FromRole_TransferOrderHeader_Items"/>
+                <End Type="ZWM_GI_PLANNED_SRV.Items" Multiplicity="*" Role="ToRole_TransferOrderHeader_Items"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_TransferOrderHeader_Items">
+                        <PropertyRef Name="Tanum"/>
+                        <PropertyRef Name="Lgnum"/>
+                    </Principal>
+                    <Dependent Role="ToRole_TransferOrderHeader_Items">
+                        <PropertyRef Name="Tanum"/>
+                        <PropertyRef Name="Lgnum"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZWM_GI_PLANNED_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="HeaderSet" EntityType="ZWM_GI_PLANNED_SRV.Header" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ItemsSet" EntityType="ZWM_GI_PLANNED_SRV.Items" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ReturnSet" EntityType="ZWM_GI_PLANNED_SRV.Return" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="TransferOrderHeader_ItemsSet" Association="ZWM_GI_PLANNED_SRV.TransferOrderHeader_Items" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="HeaderSet" Role="FromRole_TransferOrderHeader_Items"/>
+                    <End EntitySet="ItemsSet" Role="ToRole_TransferOrderHeader_Items"/>
+                </AssociationSet>
+                <AssociationSet Name="TransferOrderHeader_ReturnSet" Association="ZWM_GI_PLANNED_SRV.TransferOrderHeader_Return" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="HeaderSet" Role="FromRole_TransferOrderHeader_Return"/>
+                    <End EntitySet="ReturnSet" Role="ToRole_TransferOrderHeader_Return"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZWM_GI_PLANNED_SRV/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZWM_GI_PLANNED_SRV/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>

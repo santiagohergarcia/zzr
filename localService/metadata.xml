@@ -1,0 +1,247 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZWM_WAREHOUSE_APPLICATIONS_SRV" xml:lang="en" sap:schema-version="1">
+            <EntityType Name="GrSerialNumbers" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="PoItem"/>
+                    <PropertyRef Name="MatdocItm"/>
+                    <PropertyRef Name="Serialno"/>
+                </Key>
+                <Property Name="PoItem" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Item" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MatdocItm" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Mat. Doc.Item" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Serialno" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Serial Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="WarehouseUserAssignment" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="PoNumber"/>
+                    <PropertyRef Name="Uname"/>
+                    <PropertyRef Name="IssRecLbl"/>
+                </Key>
+                <Property Name="PoNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Purchasing Doc."/>
+                <Property Name="Uname" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="User Name"/>
+                <Property Name="IssRecLbl" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="I=Issue, R=Receipt, L=Label"/>
+                <Property Name="Warehouse" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Warehouse No."/>
+                <Property Name="StorageLoc" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Stor. Location"/>
+                <Property Name="Plant" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Plant"/>
+                <Property Name="Print" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="OutputDevice"/>
+            </EntityType>
+            <EntityType Name="Putaway" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Material"/>
+                    <PropertyRef Name="SpecialStock"/>
+                </Key>
+                <Property Name="Material" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Material"/>
+                <Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Description"/>
+                <Property Name="Uom" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Base Unit" sap:semantics="unit-of-measure"/>
+                <Property Name="SpecialStock" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Special Stock"/>
+                <Property Name="PutawayVendor" Type="Edm.String" Nullable="false" MaxLength="16" sap:unicode="false" sap:label="Consignment Vendor"/>
+                <Property Name="Warehouse" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Warehouse No."/>
+                <Property Name="Plant" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Plant"/>
+                <Property Name="StorageLoc" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Storage Location"/>
+                <Property Name="TotalQty" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:label="Total Stock"/>
+                <Property Name="PutawayQty" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:label="Total Stock"/>
+                <Property Name="StorageType" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Storage Type"/>
+                <Property Name="Bin" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Storage Bin"/>
+                <Property Name="BinPrimary" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Checkbox"/>
+                <Property Name="BinConfirm" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Storage Bin"/>
+                <Property Name="TransferOrder" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="TO Number"/>
+            </EntityType>
+            <EntityType Name="GrHeader" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="PoNumber"/>
+                </Key>
+                <Property Name="PoNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Purchasing Doc." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="GrSerialNumbersSet" Relationship="ZWM_WAREHOUSE_APPLICATIONS_SRV.HEADER_SERIAL" FromRole="FromRole_HEADER_SERIAL" ToRole="ToRole_HEADER_SERIAL"/>
+                <NavigationProperty Name="ReturnSet" Relationship="ZWM_WAREHOUSE_APPLICATIONS_SRV.HEADER_RETURN" FromRole="FromRole_HEADER_RETURN" ToRole="ToRole_HEADER_RETURN"/>
+                <NavigationProperty Name="GrItemsSet" Relationship="ZWM_WAREHOUSE_APPLICATIONS_SRV.HEADER_ITEM" FromRole="FromRole_HEADER_ITEM" ToRole="ToRole_HEADER_ITEM"/>
+            </EntityType>
+            <EntityType Name="GrItems" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="PoNumber"/>
+                    <PropertyRef Name="PoItem"/>
+                </Key>
+                <Property Name="PoNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Purchasing Doc."/>
+                <Property Name="PoItem" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Item"/>
+                <Property Name="MatDocNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Material Doc."/>
+                <Property Name="Material" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Material"/>
+                <Property Name="StoreLoc" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Stor. Location"/>
+                <Property Name="ShortText" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Short Text"/>
+                <Property Name="Plant" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Plant"/>
+                <Property Name="Unit" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Order Unit" sap:semantics="unit-of-measure"/>
+                <Property Name="OpenQty" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:label="Open GR Qty"/>
+                <Property Name="ConfQty" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:label="Confirm Qty"/>
+                <Property Name="MoveType" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Movement Type"/>
+                <Property Name="PoLongText" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="PO Long Text"/>
+                <Property Name="Requestor" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Requestor"/>
+                <NavigationProperty Name="GrHeaderSet" Relationship="ZWM_WAREHOUSE_APPLICATIONS_SRV.HEADER_ITEM" FromRole="ToRole_HEADER_ITEM" ToRole="FromRole_HEADER_ITEM"/>
+            </EntityType>
+            <EntityType Name="Return" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Type"/>
+                    <PropertyRef Name="Message"/>
+                </Key>
+                <Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Message type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Message" Type="Edm.String" Nullable="false" MaxLength="220" sap:unicode="false" sap:label="Message text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="GrLabelPrint" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="PoNumber"/>
+                    <PropertyRef Name="PoItem"/>
+                    <PropertyRef Name="MatDocNumber"/>
+                </Key>
+                <Property Name="PoNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Purchasing Doc." sap:updatable="false" sap:sortable="false"/>
+                <Property Name="PoItem" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Item" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MatDocNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Material Doc." sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Material" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Material" sap:sortable="false"/>
+                <Property Name="ShortText" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Short Text" sap:sortable="false"/>
+                <Property Name="GrQty" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="Goods Receipt Quantity" sap:sortable="false"/>
+                <Property Name="PrintQty" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="Label Print Quantity" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="GiPlanned" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Tanum"/>
+                    <PropertyRef Name="Lgnum"/>
+                    <PropertyRef Name="Mblnr"/>
+                    <PropertyRef Name="Mjahr"/>
+                    <PropertyRef Name="Tbnum"/>
+                    <PropertyRef Name="Aufnr"/>
+                    <PropertyRef Name="Tapos"/>
+                </Key>
+                <Property Name="Tanum" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Transfer Order"/>
+                <Property Name="Lgnum" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Warehouse No."/>
+                <Property Name="Kquit" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Confirmation" sap:filterable="false"/>
+                <Property Name="Mblnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Material Doc." sap:filterable="false"/>
+                <Property Name="Mjahr" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Mat. Doc. Year" sap:filterable="false"/>
+                <Property Name="Tbnum" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="TR Number" sap:filterable="false"/>
+                <Property Name="Aufnr" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Order" sap:filterable="false"/>
+                <Property Name="Bwart" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Movement Type" sap:filterable="false"/>
+                <Property Name="Tapos" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Tr.order item" sap:filterable="false"/>
+                <Property Name="Wempf" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Recipient" sap:filterable="false"/>
+                <Property Name="Matnr" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Material" sap:filterable="false"/>
+                <Property Name="MatnrConfirm" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Material" sap:filterable="false"/>
+                <Property Name="Maktx" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Description" sap:filterable="false"/>
+                <Property Name="Vlpla" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Source Stor.Bin" sap:filterable="false"/>
+                <Property Name="Vltyp" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Source Stor.Ty." sap:filterable="false"/>
+                <Property Name="VlplaConfirm" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Source Stor.Bin" sap:filterable="false"/>
+                <Property Name="Nlpla" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Destination Bin" sap:filterable="false"/>
+                <Property Name="Vsolm" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="3" sap:unicode="false" sap:label="St.un.rem.stock" sap:filterable="false"/>
+                <Property Name="VsolmQty" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="3" sap:unicode="false" sap:label="St.un.rem.stock" sap:filterable="false"/>
+                <Property Name="VsolmOrig" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="3" sap:unicode="false" sap:label="St.un.rem.stock" sap:filterable="false"/>
+                <Property Name="Meins" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="UoM" sap:filterable="false" sap:semantics="unit-of-measure"/>
+            </EntityType>
+            <EntityType Name="GiTOHeader" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Lgnum"/>
+                    <PropertyRef Name="Tanum"/>
+                </Key>
+                <Property Name="Lgnum" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Warehouse No." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Tanum" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="TO Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="ReturnSet" Relationship="ZWM_WAREHOUSE_APPLICATIONS_SRV.GITOHEADER_RETURN" FromRole="FromRole_GITOHEADER_RETURN" ToRole="ToRole_GITOHEADER_RETURN"/>
+                <NavigationProperty Name="GiPlannedSet" Relationship="ZWM_WAREHOUSE_APPLICATIONS_SRV.GITOHEADER_GIPLANNED" FromRole="FromRole_GITOHEADER_GIPLANNED" ToRole="ToRole_GITOHEADER_GIPLANNED"/>
+            </EntityType>
+            <Association Name="GITOHEADER_GIPLANNED" sap:content-version="1">
+                <End Type="ZWM_WAREHOUSE_APPLICATIONS_SRV.GiTOHeader" Multiplicity="1" Role="FromRole_GITOHEADER_GIPLANNED"/>
+                <End Type="ZWM_WAREHOUSE_APPLICATIONS_SRV.GiPlanned" Multiplicity="*" Role="ToRole_GITOHEADER_GIPLANNED"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_GITOHEADER_GIPLANNED">
+                        <PropertyRef Name="Lgnum"/>
+                        <PropertyRef Name="Tanum"/>
+                    </Principal>
+                    <Dependent Role="ToRole_GITOHEADER_GIPLANNED">
+                        <PropertyRef Name="Lgnum"/>
+                        <PropertyRef Name="Tanum"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="GITOHEADER_RETURN" sap:content-version="1">
+                <End Type="ZWM_WAREHOUSE_APPLICATIONS_SRV.GiTOHeader" Multiplicity="1" Role="FromRole_GITOHEADER_RETURN"/>
+                <End Type="ZWM_WAREHOUSE_APPLICATIONS_SRV.Return" Multiplicity="*" Role="ToRole_GITOHEADER_RETURN"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_GITOHEADER_RETURN">
+                        <PropertyRef Name="Lgnum"/>
+                        <PropertyRef Name="Tanum"/>
+                    </Principal>
+                    <Dependent Role="ToRole_GITOHEADER_RETURN">
+                        <PropertyRef Name="Message"/>
+                        <PropertyRef Name="Message"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="HEADER_SERIAL" sap:content-version="1">
+                <End Type="ZWM_WAREHOUSE_APPLICATIONS_SRV.GrHeader" Multiplicity="1" Role="FromRole_HEADER_SERIAL"/>
+                <End Type="ZWM_WAREHOUSE_APPLICATIONS_SRV.GrSerialNumbers" Multiplicity="*" Role="ToRole_HEADER_SERIAL"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_HEADER_SERIAL">
+                        <PropertyRef Name="PoNumber"/>
+                    </Principal>
+                    <Dependent Role="ToRole_HEADER_SERIAL">
+                        <PropertyRef Name="PoItem"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="HEADER_RETURN" sap:content-version="1">
+                <End Type="ZWM_WAREHOUSE_APPLICATIONS_SRV.GrHeader" Multiplicity="1" Role="FromRole_HEADER_RETURN"/>
+                <End Type="ZWM_WAREHOUSE_APPLICATIONS_SRV.Return" Multiplicity="*" Role="ToRole_HEADER_RETURN"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_HEADER_RETURN">
+                        <PropertyRef Name="PoNumber"/>
+                    </Principal>
+                    <Dependent Role="ToRole_HEADER_RETURN">
+                        <PropertyRef Name="Message"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="HEADER_ITEM" sap:content-version="1">
+                <End Type="ZWM_WAREHOUSE_APPLICATIONS_SRV.GrHeader" Multiplicity="1" Role="FromRole_HEADER_ITEM"/>
+                <End Type="ZWM_WAREHOUSE_APPLICATIONS_SRV.GrItems" Multiplicity="*" Role="ToRole_HEADER_ITEM"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_HEADER_ITEM">
+                        <PropertyRef Name="PoNumber"/>
+                    </Principal>
+                    <Dependent Role="ToRole_HEADER_ITEM">
+                        <PropertyRef Name="PoNumber"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZWM_WAREHOUSE_APPLICATIONS_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="GrSerialNumbersSet" EntityType="ZWM_WAREHOUSE_APPLICATIONS_SRV.GrSerialNumbers" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="WarehouseUserAssignmentSet" EntityType="ZWM_WAREHOUSE_APPLICATIONS_SRV.WarehouseUserAssignment" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="PutawaySet" EntityType="ZWM_WAREHOUSE_APPLICATIONS_SRV.Putaway" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="GrHeaderSet" EntityType="ZWM_WAREHOUSE_APPLICATIONS_SRV.GrHeader" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="GrItemsSet" EntityType="ZWM_WAREHOUSE_APPLICATIONS_SRV.GrItems" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ReturnSet" EntityType="ZWM_WAREHOUSE_APPLICATIONS_SRV.Return" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="GrLabelPrintSet" EntityType="ZWM_WAREHOUSE_APPLICATIONS_SRV.GrLabelPrint" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="GiPlannedSet" EntityType="ZWM_WAREHOUSE_APPLICATIONS_SRV.GiPlanned" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="GiTOHeaderSet" EntityType="ZWM_WAREHOUSE_APPLICATIONS_SRV.GiTOHeader" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="GITOHEADER_RETURNSet" Association="ZWM_WAREHOUSE_APPLICATIONS_SRV.GITOHEADER_RETURN" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="GiTOHeaderSet" Role="FromRole_GITOHEADER_RETURN"/>
+                    <End EntitySet="ReturnSet" Role="ToRole_GITOHEADER_RETURN"/>
+                </AssociationSet>
+                <AssociationSet Name="GITOHEADER_GIPLANNEDSet" Association="ZWM_WAREHOUSE_APPLICATIONS_SRV.GITOHEADER_GIPLANNED" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="GiTOHeaderSet" Role="FromRole_GITOHEADER_GIPLANNED"/>
+                    <End EntitySet="GiPlannedSet" Role="ToRole_GITOHEADER_GIPLANNED"/>
+                </AssociationSet>
+                <AssociationSet Name="HEADER_RETURNSet" Association="ZWM_WAREHOUSE_APPLICATIONS_SRV.HEADER_RETURN" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="GrHeaderSet" Role="FromRole_HEADER_RETURN"/>
+                    <End EntitySet="ReturnSet" Role="ToRole_HEADER_RETURN"/>
+                </AssociationSet>
+                <AssociationSet Name="HEADER_SERIALSet" Association="ZWM_WAREHOUSE_APPLICATIONS_SRV.HEADER_SERIAL" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="GrHeaderSet" Role="FromRole_HEADER_SERIAL"/>
+                    <End EntitySet="GrSerialNumbersSet" Role="ToRole_HEADER_SERIAL"/>
+                </AssociationSet>
+                <AssociationSet Name="HEADER_ITEMSet" Association="ZWM_WAREHOUSE_APPLICATIONS_SRV.HEADER_ITEM" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="GrHeaderSet" Role="FromRole_HEADER_ITEM"/>
+                    <End EntitySet="GrItemsSet" Role="ToRole_HEADER_ITEM"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZWM_WAREHOUSE_APPLICATIONS_SRV/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZWM_WAREHOUSE_APPLICATIONS_SRV/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>
